@@ -1,0 +1,18 @@
+import java.awt.GraphicsEnvironment;
+
+int refreshRate =  GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getRefreshRate();
+float dt = 1 / refreshRate;
+
+X x = new X(width / 2, height / 2);
+
+void setup() {
+  fullScreen();
+  frameRate(refreshRate);
+
+  x.loadImages();
+}
+
+void draw() {
+  background(255);
+  x.draw((frameCount % 60) * dt);
+}
