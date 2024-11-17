@@ -1,0 +1,35 @@
+//Packages
+//To get refresh rate
+import java.awt.GraphicsEnvironment;
+
+//Constants
+//Refresh rate
+final int refreshRate =  GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getRefreshRate();
+//Delta time
+final float dt = 1.0 / refreshRate;
+//Sprites relation
+int spritesRelation;
+
+//Classes
+//Main character
+X x = new X();
+
+void setup() {
+  fullScreen();
+  frameRate(refreshRate);
+  spritesRelation = height * 2 / 738;
+
+  x.xy.setxy(width / 2, height / 2);
+  x.loadImages();
+}
+
+void draw() {
+  if (keyPressed) thread("threadMovement");
+  background(255);
+  //if (keyPressed) x.move();
+  x.draw();
+}
+
+void threadMovement() {
+  x.move();
+}
